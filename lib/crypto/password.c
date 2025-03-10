@@ -35,27 +35,30 @@ char* validate_password(const char* password){
     size_t target_len = STATE_SIZE * STATE_SIZE;
 
     if(password_len > target_len){
-        fprintf(stderr, "Password is too long, accounting..\n");
-                char* xor_res = calloc(target_len + 1, sizeof(char));
+        char* xor_res = calloc(target_len + 1, sizeof(char));
         if (!xor_res) {
             fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
             return NULL;
         }
-        
-        chunker(password, target_len, xor_res);
+        char* password_copy = strdup(password);
+        if (!password_copy) {
+            fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
+            free(xor_res);
+            return NULL;
+        }
+        chunker(password_copy, target_len, xor_res);
+        free(password_copy);
         xor_res[target_len] = '\0';
         
         return xor_res;
     }
 
     if(password_len < target_len){
-        fprintf(stderr, "Password is too short, extending..\n");
         char* updated_password = malloc(target_len + 1); 
         if (!updated_password) {
             fprintf(stderr,MEMORY_ALLOCATION_FAILURE);
             return NULL;
         }
-
         strcpy(updated_password, password);
         size_t position = password_len;
         while(position < target_len) {

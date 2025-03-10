@@ -62,7 +62,8 @@ CMakeFiles/a.dir/lib/crypto/decryptor.c.o: ../lib/crypto/decryptor.c \
   ../include/common/failures.h \
   ../include/crypto/decryptor.h \
   ../include/utils/conversion.h \
-  ../include/utils/memory.h
+  ../include/utils/memory.h \
+  ../include/common/config.h
 
 CMakeFiles/a.dir/lib/crypto/encryptor.c.o: ../lib/crypto/encryptor.c \
   /usr/include/stdc-predef.h \
@@ -276,6 +277,7 @@ CMakeFiles/a.dir/lib/utils/fileio.c.o: ../lib/utils/fileio.c \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  ../include/crypto/chunked_file.h \
   /usr/include/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
@@ -306,6 +308,8 @@ CMakeFiles/a.dir/lib/utils/fileio.c.o: ../lib/utils/fileio.c \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
   ../include/common/config.h \
   ../include/common/failures.h \
+  ../include/utils/memory.h \
+  ../include/crypto/chunked_file.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
   /usr/include/limits.h \
@@ -404,6 +408,7 @@ CMakeFiles/a.dir/src/main.c.o: ../src/main.c \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  ../include/crypto/chunked_file.h \
   /usr/include/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
@@ -442,7 +447,8 @@ CMakeFiles/a.dir/src/main.c.o: ../src/main.c \
   ../include/crypto/password.h \
   ../include/utils/conversion.h \
   ../include/crypto/encryptor.h \
-  ../include/crypto/decryptor.h
+  ../include/crypto/decryptor.h \
+  ../include/crypto/chunked_file.h
 
 
 ../src/main.c:
@@ -459,13 +465,15 @@ CMakeFiles/a.dir/src/main.c.o: ../src/main.c \
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
 
+../include/crypto/chunked_file.h:
+
 ../include/utils/fileio.h:
 
 ../lib/utils/conversion.c:
 
-../include/common/config.h:
-
 ../include/crypto/password.h:
+
+../include/common/config.h:
 
 ../include/utils/conversion.h:
 

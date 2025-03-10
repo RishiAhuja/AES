@@ -162,24 +162,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named a
+# Target rules for targets named crypt
 
 # Build rule for target.
-a : cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 a
-.PHONY : a
+crypt: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 crypt
+.PHONY : crypt
 
 # fast build rule for target.
-a/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/build
-.PHONY : a/fast
+crypt/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/build
+.PHONY : crypt/fast
 
 lib/crypto/decryptor.o: lib/crypto/decryptor.c.o
 .PHONY : lib/crypto/decryptor.o
 
 # target to build an object file
 lib/crypto/decryptor.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/crypto/decryptor.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/decryptor.c.o
 .PHONY : lib/crypto/decryptor.c.o
 
 lib/crypto/decryptor.i: lib/crypto/decryptor.c.i
@@ -187,7 +187,7 @@ lib/crypto/decryptor.i: lib/crypto/decryptor.c.i
 
 # target to preprocess a source file
 lib/crypto/decryptor.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/crypto/decryptor.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/decryptor.c.i
 .PHONY : lib/crypto/decryptor.c.i
 
 lib/crypto/decryptor.s: lib/crypto/decryptor.c.s
@@ -195,7 +195,7 @@ lib/crypto/decryptor.s: lib/crypto/decryptor.c.s
 
 # target to generate assembly for a file
 lib/crypto/decryptor.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/crypto/decryptor.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/decryptor.c.s
 .PHONY : lib/crypto/decryptor.c.s
 
 lib/crypto/encryptor.o: lib/crypto/encryptor.c.o
@@ -203,7 +203,7 @@ lib/crypto/encryptor.o: lib/crypto/encryptor.c.o
 
 # target to build an object file
 lib/crypto/encryptor.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/crypto/encryptor.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/encryptor.c.o
 .PHONY : lib/crypto/encryptor.c.o
 
 lib/crypto/encryptor.i: lib/crypto/encryptor.c.i
@@ -211,7 +211,7 @@ lib/crypto/encryptor.i: lib/crypto/encryptor.c.i
 
 # target to preprocess a source file
 lib/crypto/encryptor.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/crypto/encryptor.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/encryptor.c.i
 .PHONY : lib/crypto/encryptor.c.i
 
 lib/crypto/encryptor.s: lib/crypto/encryptor.c.s
@@ -219,7 +219,7 @@ lib/crypto/encryptor.s: lib/crypto/encryptor.c.s
 
 # target to generate assembly for a file
 lib/crypto/encryptor.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/crypto/encryptor.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/encryptor.c.s
 .PHONY : lib/crypto/encryptor.c.s
 
 lib/crypto/password.o: lib/crypto/password.c.o
@@ -227,7 +227,7 @@ lib/crypto/password.o: lib/crypto/password.c.o
 
 # target to build an object file
 lib/crypto/password.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/crypto/password.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/password.c.o
 .PHONY : lib/crypto/password.c.o
 
 lib/crypto/password.i: lib/crypto/password.c.i
@@ -235,7 +235,7 @@ lib/crypto/password.i: lib/crypto/password.c.i
 
 # target to preprocess a source file
 lib/crypto/password.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/crypto/password.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/password.c.i
 .PHONY : lib/crypto/password.c.i
 
 lib/crypto/password.s: lib/crypto/password.c.s
@@ -243,7 +243,7 @@ lib/crypto/password.s: lib/crypto/password.c.s
 
 # target to generate assembly for a file
 lib/crypto/password.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/crypto/password.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/password.c.s
 .PHONY : lib/crypto/password.c.s
 
 lib/utils/conversion.o: lib/utils/conversion.c.o
@@ -251,7 +251,7 @@ lib/utils/conversion.o: lib/utils/conversion.c.o
 
 # target to build an object file
 lib/utils/conversion.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/conversion.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/conversion.c.o
 .PHONY : lib/utils/conversion.c.o
 
 lib/utils/conversion.i: lib/utils/conversion.c.i
@@ -259,7 +259,7 @@ lib/utils/conversion.i: lib/utils/conversion.c.i
 
 # target to preprocess a source file
 lib/utils/conversion.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/conversion.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/conversion.c.i
 .PHONY : lib/utils/conversion.c.i
 
 lib/utils/conversion.s: lib/utils/conversion.c.s
@@ -267,7 +267,7 @@ lib/utils/conversion.s: lib/utils/conversion.c.s
 
 # target to generate assembly for a file
 lib/utils/conversion.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/conversion.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/conversion.c.s
 .PHONY : lib/utils/conversion.c.s
 
 lib/utils/fileio.o: lib/utils/fileio.c.o
@@ -275,7 +275,7 @@ lib/utils/fileio.o: lib/utils/fileio.c.o
 
 # target to build an object file
 lib/utils/fileio.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/fileio.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/fileio.c.o
 .PHONY : lib/utils/fileio.c.o
 
 lib/utils/fileio.i: lib/utils/fileio.c.i
@@ -283,7 +283,7 @@ lib/utils/fileio.i: lib/utils/fileio.c.i
 
 # target to preprocess a source file
 lib/utils/fileio.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/fileio.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/fileio.c.i
 .PHONY : lib/utils/fileio.c.i
 
 lib/utils/fileio.s: lib/utils/fileio.c.s
@@ -291,7 +291,7 @@ lib/utils/fileio.s: lib/utils/fileio.c.s
 
 # target to generate assembly for a file
 lib/utils/fileio.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/fileio.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/fileio.c.s
 .PHONY : lib/utils/fileio.c.s
 
 lib/utils/memory.o: lib/utils/memory.c.o
@@ -299,7 +299,7 @@ lib/utils/memory.o: lib/utils/memory.c.o
 
 # target to build an object file
 lib/utils/memory.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/memory.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/memory.c.o
 .PHONY : lib/utils/memory.c.o
 
 lib/utils/memory.i: lib/utils/memory.c.i
@@ -307,7 +307,7 @@ lib/utils/memory.i: lib/utils/memory.c.i
 
 # target to preprocess a source file
 lib/utils/memory.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/memory.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/memory.c.i
 .PHONY : lib/utils/memory.c.i
 
 lib/utils/memory.s: lib/utils/memory.c.s
@@ -315,7 +315,7 @@ lib/utils/memory.s: lib/utils/memory.c.s
 
 # target to generate assembly for a file
 lib/utils/memory.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/lib/utils/memory.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/memory.c.s
 .PHONY : lib/utils/memory.c.s
 
 src/main.o: src/main.c.o
@@ -323,7 +323,7 @@ src/main.o: src/main.c.o
 
 # target to build an object file
 src/main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/src/main.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/src/main.c.o
 .PHONY : src/main.c.o
 
 src/main.i: src/main.c.i
@@ -331,7 +331,7 @@ src/main.i: src/main.c.i
 
 # target to preprocess a source file
 src/main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/src/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/src/main.c.i
 .PHONY : src/main.c.i
 
 src/main.s: src/main.c.s
@@ -339,7 +339,7 @@ src/main.s: src/main.c.s
 
 # target to generate assembly for a file
 src/main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.dir/build.make CMakeFiles/a.dir/src/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/src/main.c.s
 .PHONY : src/main.c.s
 
 # Help Target
@@ -354,7 +354,7 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... a"
+	@echo "... crypt"
 	@echo "... lib/crypto/decryptor.o"
 	@echo "... lib/crypto/decryptor.i"
 	@echo "... lib/crypto/decryptor.s"

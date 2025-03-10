@@ -4,11 +4,10 @@
 #include "../include/common/config.h"
 #include "../include/common/failures.h"
 #include "../include/utils/memory.h"
+#include "../include/crypto/chunked_file.h"
 #include <limits.h>
 #include <string.h>
 
-// Reading and Writing to a file
-// r - Read, Write - w, Read & Write - w+, Append - a
 
 FILE* open_file(const char* filename, const char* mode){
     FILE *file = fopen(filename, mode); // Automatically allocates memory in heap instead of stack, so it won't get invalidated. 
@@ -89,6 +88,15 @@ void write_file(const char* filename, const char* content, const int content_siz
     fclose(file);
 }
 
+void append_file(const char* filename, const char* content, const int content_size){
+    FILE *file = open_file(filename, "a");
+    if(file == NULL) return;
+    for (size_t i = 0; i < content_size; i++){
+        fputc(content[i], file);
+    }
+    fclose(file);
+}
+
 void init_state(const char* filename, char** state){
     FILE *file = open_file(filename, "r");
     if(file == NULL) {
@@ -121,8 +129,9 @@ void init_state_from_contents(const char* contents, char** state){
 }
 
 
-char*** file_chunker(const char* filename){
-    char* file_contents = read_file("../text.txt");
+ChunkedFile file_chunker(const char* filename){
+    ChunkedFile result = {NULL, 0};
+    char* file_contents = read_file(filename);
     int buffer = DEFAULT_BUFFER;
 
     size_t file_length = strlen(file_contents);
@@ -136,7 +145,7 @@ char*** file_chunker(const char* filename){
     if (!states) {
         fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
         free(file_contents);
-        return NULL;
+        return result;
     }
 
     size_t remaining_length = strlen(file_contents);
@@ -145,7 +154,7 @@ char*** file_chunker(const char* filename){
         if (i > buffer) {
             if (buffer > INT_MAX / 2) {
                 fprintf(stderr, "Buffer size too large to double\n");
-                return NULL;
+                return result;
             }
             int new_buffer = buffer * 2;
             printf("expanding buffer from %d to %d\n", buffer, new_buffer);
@@ -157,7 +166,7 @@ char*** file_chunker(const char* filename){
                 }
                 free(states);
                 free(file_contents);
-                return NULL;
+                return result;
             }
             buffer = new_buffer;
             states = new_states;
@@ -169,7 +178,7 @@ char*** file_chunker(const char* filename){
                 free_matrix_memory(states[j], STATE_SIZE);
             }
             free(file_contents);
-            return NULL;
+            return result;
         }
 
         init_state_from_contents(current_position, state);
@@ -182,18 +191,28 @@ char*** file_chunker(const char* filename){
         }
         if (*current_position == '\0') break;
     }
+    result.state = states;
+    result.num_state = i;
+    return result;
+}
 
-    for (size_t l = 0; l < i; l++)
-    {
-        // printf("%p\n", states[l]);
-        for (size_t j = 0; j < STATE_SIZE; j++)
-        {
-            for (size_t k = 0; k < STATE_SIZE; k++)
-            {
-                printf("%c", (states[l])[j][k]);
-            }
-        }
-        printf("\n");
+
+int chunk_writer(const char* filename, const char** chunks, size_t chunks_len){
+    if (!filename || !chunks) {
+        fprintf(stderr, INVALID_CHUNK_WRITER_ARGS);
+        return EXIT_FAILURE;
     }
-    return states;
+    if (chunks[0]) {
+        size_t chunk_length = strlen(chunks[0]);
+        write_file(filename, chunks[0], chunk_length);
+    }
+   for (size_t i = 1; i < chunks_len; i++){
+    if (!chunks[i]) {
+        fprintf(stderr, "Null chunk encountered at index %zu\n", i);
+        return EXIT_FAILURE;
+     }
+     size_t chunk_length = strlen(chunks[i]);
+    append_file(filename, chunks[i], chunk_length);
+   }
+   return EXIT_SUCCESS;
 }

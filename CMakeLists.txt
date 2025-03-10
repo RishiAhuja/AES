@@ -7,7 +7,7 @@ set(CMAKE_C_STANDARD 11)
 # Include directories
 include_directories(include)
 
-add_executable(a 
+add_executable(crypt
     src/main.c
     lib/utils/fileio.c
     lib/utils/memory.c
@@ -17,4 +17,4 @@ add_executable(a
     lib/utils/conversion.c
 )
 
-install(TARGETS a DESTINATION bin)
+install(TARGETS crypt DESTINATION bin)
