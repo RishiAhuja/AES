@@ -588,6 +588,10 @@ CMakeFiles/crypt.dir/src/main.c.o: ../src/main.c \
   /usr/include/stdint.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
   ../include/common/config.h \
   ../include/common/failures.h \
   ../include/utils/memory.h \
@@ -599,6 +603,10 @@ CMakeFiles/crypt.dir/src/main.c.o: ../src/main.c \
   ../include/crypto/key_expansion.h \
   ../include/crypto/confusion.h
 
+
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
+/usr/include/time.h:
 
 ../src/main.c:
 
@@ -636,6 +644,8 @@ CMakeFiles/crypt.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/alloca.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
 ../include/common/failures.h:
@@ -653,6 +663,8 @@ CMakeFiles/crypt.dir/src/main.c.o: ../src/main.c \
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
 ../lib/crypto/diffusion.c:
 

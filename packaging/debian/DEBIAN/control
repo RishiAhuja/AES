@@ -1,0 +1,11 @@
+Package: axon
+Version: 1.0.0
+Section: utils
+Priority: optional
+Architecture: amd64
+Depends: libc6 (>= 2.17)
+Maintainer: Rishi Ahuja <your-email@example.com>
+Description: AES file encryption and decryption tool
+ A command-line tool for securely encrypting and decrypting
+ files using the AES algorithm with CBC mode.
+ Features secure password handling and high performance.

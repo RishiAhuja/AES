@@ -162,24 +162,37 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named crypt
+# Target rules for targets named axon_lib
 
 # Build rule for target.
-crypt: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 crypt
-.PHONY : crypt
+axon_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 axon_lib
+.PHONY : axon_lib
 
 # fast build rule for target.
-crypt/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/build
-.PHONY : crypt/fast
+axon_lib/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/build
+.PHONY : axon_lib/fast
+
+#=============================================================================
+# Target rules for targets named axon
+
+# Build rule for target.
+axon: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 axon
+.PHONY : axon
+
+# fast build rule for target.
+axon/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon.dir/build.make CMakeFiles/axon.dir/build
+.PHONY : axon/fast
 
 lib/crypto/confusion.o: lib/crypto/confusion.c.o
 .PHONY : lib/crypto/confusion.o
 
 # target to build an object file
 lib/crypto/confusion.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/confusion.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/confusion.c.o
 .PHONY : lib/crypto/confusion.c.o
 
 lib/crypto/confusion.i: lib/crypto/confusion.c.i
@@ -187,7 +200,7 @@ lib/crypto/confusion.i: lib/crypto/confusion.c.i
 
 # target to preprocess a source file
 lib/crypto/confusion.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/confusion.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/confusion.c.i
 .PHONY : lib/crypto/confusion.c.i
 
 lib/crypto/confusion.s: lib/crypto/confusion.c.s
@@ -195,7 +208,7 @@ lib/crypto/confusion.s: lib/crypto/confusion.c.s
 
 # target to generate assembly for a file
 lib/crypto/confusion.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/confusion.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/confusion.c.s
 .PHONY : lib/crypto/confusion.c.s
 
 lib/crypto/decryptor.o: lib/crypto/decryptor.c.o
@@ -203,7 +216,7 @@ lib/crypto/decryptor.o: lib/crypto/decryptor.c.o
 
 # target to build an object file
 lib/crypto/decryptor.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/decryptor.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/decryptor.c.o
 .PHONY : lib/crypto/decryptor.c.o
 
 lib/crypto/decryptor.i: lib/crypto/decryptor.c.i
@@ -211,7 +224,7 @@ lib/crypto/decryptor.i: lib/crypto/decryptor.c.i
 
 # target to preprocess a source file
 lib/crypto/decryptor.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/decryptor.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/decryptor.c.i
 .PHONY : lib/crypto/decryptor.c.i
 
 lib/crypto/decryptor.s: lib/crypto/decryptor.c.s
@@ -219,7 +232,7 @@ lib/crypto/decryptor.s: lib/crypto/decryptor.c.s
 
 # target to generate assembly for a file
 lib/crypto/decryptor.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/decryptor.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/decryptor.c.s
 .PHONY : lib/crypto/decryptor.c.s
 
 lib/crypto/diffusion.o: lib/crypto/diffusion.c.o
@@ -227,7 +240,7 @@ lib/crypto/diffusion.o: lib/crypto/diffusion.c.o
 
 # target to build an object file
 lib/crypto/diffusion.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/diffusion.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/diffusion.c.o
 .PHONY : lib/crypto/diffusion.c.o
 
 lib/crypto/diffusion.i: lib/crypto/diffusion.c.i
@@ -235,7 +248,7 @@ lib/crypto/diffusion.i: lib/crypto/diffusion.c.i
 
 # target to preprocess a source file
 lib/crypto/diffusion.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/diffusion.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/diffusion.c.i
 .PHONY : lib/crypto/diffusion.c.i
 
 lib/crypto/diffusion.s: lib/crypto/diffusion.c.s
@@ -243,7 +256,7 @@ lib/crypto/diffusion.s: lib/crypto/diffusion.c.s
 
 # target to generate assembly for a file
 lib/crypto/diffusion.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/diffusion.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/diffusion.c.s
 .PHONY : lib/crypto/diffusion.c.s
 
 lib/crypto/encryptor.o: lib/crypto/encryptor.c.o
@@ -251,7 +264,7 @@ lib/crypto/encryptor.o: lib/crypto/encryptor.c.o
 
 # target to build an object file
 lib/crypto/encryptor.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/encryptor.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/encryptor.c.o
 .PHONY : lib/crypto/encryptor.c.o
 
 lib/crypto/encryptor.i: lib/crypto/encryptor.c.i
@@ -259,7 +272,7 @@ lib/crypto/encryptor.i: lib/crypto/encryptor.c.i
 
 # target to preprocess a source file
 lib/crypto/encryptor.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/encryptor.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/encryptor.c.i
 .PHONY : lib/crypto/encryptor.c.i
 
 lib/crypto/encryptor.s: lib/crypto/encryptor.c.s
@@ -267,7 +280,7 @@ lib/crypto/encryptor.s: lib/crypto/encryptor.c.s
 
 # target to generate assembly for a file
 lib/crypto/encryptor.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/encryptor.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/encryptor.c.s
 .PHONY : lib/crypto/encryptor.c.s
 
 lib/crypto/key_expansion.o: lib/crypto/key_expansion.c.o
@@ -275,7 +288,7 @@ lib/crypto/key_expansion.o: lib/crypto/key_expansion.c.o
 
 # target to build an object file
 lib/crypto/key_expansion.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/key_expansion.c.o
 .PHONY : lib/crypto/key_expansion.c.o
 
 lib/crypto/key_expansion.i: lib/crypto/key_expansion.c.i
@@ -283,7 +296,7 @@ lib/crypto/key_expansion.i: lib/crypto/key_expansion.c.i
 
 # target to preprocess a source file
 lib/crypto/key_expansion.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/key_expansion.c.i
 .PHONY : lib/crypto/key_expansion.c.i
 
 lib/crypto/key_expansion.s: lib/crypto/key_expansion.c.s
@@ -291,7 +304,7 @@ lib/crypto/key_expansion.s: lib/crypto/key_expansion.c.s
 
 # target to generate assembly for a file
 lib/crypto/key_expansion.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/key_expansion.c.s
 .PHONY : lib/crypto/key_expansion.c.s
 
 lib/crypto/password.o: lib/crypto/password.c.o
@@ -299,7 +312,7 @@ lib/crypto/password.o: lib/crypto/password.c.o
 
 # target to build an object file
 lib/crypto/password.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/password.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/password.c.o
 .PHONY : lib/crypto/password.c.o
 
 lib/crypto/password.i: lib/crypto/password.c.i
@@ -307,7 +320,7 @@ lib/crypto/password.i: lib/crypto/password.c.i
 
 # target to preprocess a source file
 lib/crypto/password.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/password.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/password.c.i
 .PHONY : lib/crypto/password.c.i
 
 lib/crypto/password.s: lib/crypto/password.c.s
@@ -315,7 +328,7 @@ lib/crypto/password.s: lib/crypto/password.c.s
 
 # target to generate assembly for a file
 lib/crypto/password.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/password.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/crypto/password.c.s
 .PHONY : lib/crypto/password.c.s
 
 lib/utils/conversion.o: lib/utils/conversion.c.o
@@ -323,7 +336,7 @@ lib/utils/conversion.o: lib/utils/conversion.c.o
 
 # target to build an object file
 lib/utils/conversion.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/conversion.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/utils/conversion.c.o
 .PHONY : lib/utils/conversion.c.o
 
 lib/utils/conversion.i: lib/utils/conversion.c.i
@@ -331,7 +344,7 @@ lib/utils/conversion.i: lib/utils/conversion.c.i
 
 # target to preprocess a source file
 lib/utils/conversion.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/conversion.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/utils/conversion.c.i
 .PHONY : lib/utils/conversion.c.i
 
 lib/utils/conversion.s: lib/utils/conversion.c.s
@@ -339,7 +352,7 @@ lib/utils/conversion.s: lib/utils/conversion.c.s
 
 # target to generate assembly for a file
 lib/utils/conversion.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/conversion.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/utils/conversion.c.s
 .PHONY : lib/utils/conversion.c.s
 
 lib/utils/fileio.o: lib/utils/fileio.c.o
@@ -347,7 +360,7 @@ lib/utils/fileio.o: lib/utils/fileio.c.o
 
 # target to build an object file
 lib/utils/fileio.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/fileio.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/utils/fileio.c.o
 .PHONY : lib/utils/fileio.c.o
 
 lib/utils/fileio.i: lib/utils/fileio.c.i
@@ -355,7 +368,7 @@ lib/utils/fileio.i: lib/utils/fileio.c.i
 
 # target to preprocess a source file
 lib/utils/fileio.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/fileio.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/utils/fileio.c.i
 .PHONY : lib/utils/fileio.c.i
 
 lib/utils/fileio.s: lib/utils/fileio.c.s
@@ -363,7 +376,7 @@ lib/utils/fileio.s: lib/utils/fileio.c.s
 
 # target to generate assembly for a file
 lib/utils/fileio.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/fileio.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/utils/fileio.c.s
 .PHONY : lib/utils/fileio.c.s
 
 lib/utils/memory.o: lib/utils/memory.c.o
@@ -371,7 +384,7 @@ lib/utils/memory.o: lib/utils/memory.c.o
 
 # target to build an object file
 lib/utils/memory.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/memory.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/utils/memory.c.o
 .PHONY : lib/utils/memory.c.o
 
 lib/utils/memory.i: lib/utils/memory.c.i
@@ -379,7 +392,7 @@ lib/utils/memory.i: lib/utils/memory.c.i
 
 # target to preprocess a source file
 lib/utils/memory.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/memory.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/utils/memory.c.i
 .PHONY : lib/utils/memory.c.i
 
 lib/utils/memory.s: lib/utils/memory.c.s
@@ -387,7 +400,7 @@ lib/utils/memory.s: lib/utils/memory.c.s
 
 # target to generate assembly for a file
 lib/utils/memory.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/utils/memory.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon_lib.dir/build.make CMakeFiles/axon_lib.dir/lib/utils/memory.c.s
 .PHONY : lib/utils/memory.c.s
 
 src/main.o: src/main.c.o
@@ -395,7 +408,7 @@ src/main.o: src/main.c.o
 
 # target to build an object file
 src/main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/src/main.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon.dir/build.make CMakeFiles/axon.dir/src/main.c.o
 .PHONY : src/main.c.o
 
 src/main.i: src/main.c.i
@@ -403,7 +416,7 @@ src/main.i: src/main.c.i
 
 # target to preprocess a source file
 src/main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/src/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon.dir/build.make CMakeFiles/axon.dir/src/main.c.i
 .PHONY : src/main.c.i
 
 src/main.s: src/main.c.s
@@ -411,7 +424,7 @@ src/main.s: src/main.c.s
 
 # target to generate assembly for a file
 src/main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/src/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axon.dir/build.make CMakeFiles/axon.dir/src/main.c.s
 .PHONY : src/main.c.s
 
 # Help Target
@@ -426,7 +439,8 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... crypt"
+	@echo "... axon"
+	@echo "... axon_lib"
 	@echo "... lib/crypto/confusion.o"
 	@echo "... lib/crypto/confusion.i"
 	@echo "... lib/crypto/confusion.s"

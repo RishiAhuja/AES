@@ -1,0 +1,33 @@
+.TH AXON 1 "March 2025" "AXON 1.0" "User Commands"
+.SH NAME
+axon \- AES file encryption and decryption tool
+.SH SYNOPSIS
+.B axon
+.I source_file destination_file key [e|d]
+.SH DESCRIPTION
+.B axon
+encrypts or decrypts files using AES-128 encryption with CBC mode.
+.SH OPTIONS
+.TP
+.B source_file
+The file to be processed
+.TP
+.B destination_file
+Where to write the processed output
+.TP
+.B key
+The encryption/decryption key
+.TP
+.B e|d
+'e' for encryption, 'd' for decryption
+.SH EXAMPLES
+.B axon secret.txt encrypted.bin mypassword e
+.RS
+Encrypts secret.txt to encrypted.bin using 'mypassword' as the key
+.RE
+.B axon encrypted.bin decrypted.txt mypassword d
+.RS
+Decrypts encrypted.bin to decrypted.txt using 'mypassword' as the key
+.RE
+.SH AUTHOR
+Rishi Ahuja

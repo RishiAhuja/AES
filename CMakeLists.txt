@@ -1,23 +1,30 @@
 cmake_minimum_required(VERSION 3.10)
-project(AES C)
+project(axon VERSION 1.0.0 LANGUAGES C)
 
-# Set C Standard
-set(CMAKE_C_STANDARD 11)
+# Set C standard
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # Include directories
-include_directories(include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-add_executable(crypt
-    src/main.c
-    lib/utils/fileio.c
-    lib/utils/memory.c
-    lib/crypto/password.c
-    lib/crypto/encryptor.c
-    lib/crypto/decryptor.c
-    lib/crypto/key_expansion.c
-    lib/utils/conversion.c
-    lib/crypto/confusion.c
-    lib/crypto/diffusion.c
-)
+# Find source files
+file(GLOB_RECURSE LIB_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/lib/*.c")
+file(GLOB MAIN_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c")
 
-install(TARGETS crypt DESTINATION bin)
+# Create static library
+add_library(axon_lib STATIC ${LIB_SOURCES})
+
+# Create executable
+add_executable(axon ${MAIN_SOURCES})
+target_link_libraries(axon axon_lib m)
+
+# Install targets
+install(TARGETS axon DESTINATION bin)
+
+# Install man pages if they exist
+install(FILES man/axon.1 DESTINATION share/man/man1 OPTIONAL)
+
+# Display status message
+message(STATUS "Axon: AES Encryption Tool")
+message(STATUS "Configuration complete")

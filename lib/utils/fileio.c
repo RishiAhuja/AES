@@ -157,7 +157,6 @@ ChunkedFile file_chunker(const char* filename){
                 return result;
             }
             int new_buffer = buffer * 2;
-            printf("expanding buffer from %d to %d\n", buffer, new_buffer);
             char*** new_states = realloc(states, new_buffer * sizeof(char**));
             if (!new_states) {
                 fprintf(stderr, MEMORY_ALLOCATION_FAILURE);

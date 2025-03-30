@@ -1,40 +1,44 @@
-# Prerequisites
-*.d
-
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
+# Build directories and artifacts
+/build/
+/binaries/
+/build-*/
+/build_*/
+/dist/
+/axon-*/
+*.deb
+*.rpm
+*.msi
+*.dmg
+*.pkg
 *.exe
+*.tar.gz
+*.zip
+*.tar.xz
+*.AppImage
+axon
+
+# CMake artifacts
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+Makefile
+*.cbp
+
+# Compiled binaries and libraries
+*.a
+*.o
+*.so
+*.dll
+*.dylib
 *.out
 *.app
-*.i*86
-*.x86_64
-*.hex
+
+# Dependency directories
+/deps/
+/vendor/
 
 # Debug files
 *.dSYM/
@@ -42,11 +46,29 @@
 *.idb
 *.pdb
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+*~
+*.swp
+*.swo
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Log files
+*.log
+/logs/
+*.tmp
+
+# Miscellaneous
+.cache/
+.env
+.env.*
+!.env.example
+node_modules/
+*.bak
+*.patch

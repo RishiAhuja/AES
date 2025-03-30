@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
+#include <time.h>
 #include "../include/common/config.h"
 #include "../include/common/failures.h"
 #include "../include/utils/memory.h"
@@ -16,19 +17,9 @@
 
 #define STATE_SIZE 4
 
-// stderr is a standard error stream in C, 
-// which is used to output error messages. 
-// Unlike stdout, which is buffered, stderr 
-// is typically unbuffered, meaning that error
-// messages are displayed immediately without 
-// waiting for the buffer to fill up. 
-// This ensures that error messages are printed 
-// promptly, even if the program crashes 
-// or terminates unexpectedly
-
-
-
 int main(int argc, const char* argv[]) {
+    clock_t start_time = clock();
+
     if (argc != 5) {
         fprintf(stderr, "Usage: %s <source_file> <destination_file> <key> <e/d>\n", argv[0]);
         return EXIT_FAILURE;
@@ -40,9 +31,6 @@ int main(int argc, const char* argv[]) {
     init_state(argv[1], state);
 
     char* final_pass = validate_password(argv[3]);
-
-    printf("\nFinal password length: %zu\n", strlen(final_pass));
-
     char **password = allocate_matrix_memory(STATE_SIZE, STATE_SIZE);
 
     for (size_t i = 0; i < STATE_SIZE; i++){
@@ -65,8 +53,6 @@ int main(int argc, const char* argv[]) {
     }
 
     char* hexarg = bytes_to_hex((unsigned char*)flat_state, STATE_SIZE * STATE_SIZE);
-    printf("Hex: %s\n", hexarg);
-
     write_file(argv[2], hexarg, STATE_SIZE * STATE_SIZE * 2);
 
     free_matrix_memory(password, STATE_SIZE);
@@ -101,7 +87,13 @@ int main(int argc, const char* argv[]) {
         int write_result = chunk_writer(argv[2], encrypted_content, chunked_file.num_state);
         if (write_result != 0) {
             fprintf(stderr, FILE_WRITE_FAILURE);
+            status = EXIT_FAILURE;
+        } else {
+            printf("Encryption completed successfully! File saved to: %s\n", argv[2]);
+            double processing_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
+            printf("Processing time: %.5f seconds\n", processing_time);
         }
+        
         for (size_t i = 0; i < chunked_file.num_state; i++) {
             free_matrix_memory(chunked_file.state[i], STATE_SIZE);
             free(encrypted_content[i]);
@@ -151,6 +143,11 @@ int main(int argc, const char* argv[]) {
         int write_result = chunk_writer(argv[2], (const char**)decrypted_content, num_chunks);
         if (write_result == -1) {
             fprintf(stderr, FILE_WRITE_FAILURE);
+            status = EXIT_FAILURE;
+        } else {
+            printf("Decryption completed successfully! File saved to: %s\n", argv[2]);
+            double processing_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
+            printf("Processing time: %.5f seconds\n", processing_time);
         }
         
         for (size_t i = 0; i < num_chunks; i++) {

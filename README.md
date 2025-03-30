@@ -1,230 +1,415 @@
-# XOR Cryptography
+# Axon: Advanced AES Encryption CLI Tool
 
-## Project Overview
-This project is a C-based encryption and decryption system that processes files in chunks, using a password-based encryption method that operates on state matrices.
+A high-performance, secure file encryption and decryption tool using AES-128.
 
-## Directory Structure
-```
-CPrograms/
-├── .gitignore
-├── CMakeLists.txt
-├── README.md
-├── text.txt
-├── .vscode/                  # VS Code configuration
-├── build/                    # Build output directory
-├── include/                  # Header files
-│   ├── common/               # Common definitions
-│   ├── crypto/               # Encryption/decryption related headers
-│   └── utils/                # Utility function headers
-├── lib/                      # Implementation files
-│   ├── crypto/               # Encryption/decryption implementations
-│   └── utils/                # Utility implementations
-└── src/                      # Main application code
-    └── main.c                # Entry point
-```
+![Axon Logo](assets/logo.jpg)
 
-## Core Components
+## Table of Contents
 
-### 1. File I/O System (`lib/utils/fileio.c`)
+## Table of Contents
 
-#### Functions
+- [Overview](#overview)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Installation](#installation)
+  - [Linux](#linux)
+  - [macOS](#macos)
+  - [Windows](#windows)
+  - [From Source](#from-source)
+- [Requirements](#requirements)
+- [Usage](#usage)
+  - [Basic Commands](#basic-commands)
+  - [Examples](#examples)
+- [Security Considerations](#security-considerations)
+- [Development](#development)
+  - [Building from Source](#building-from-source)
+  - [Running Tests](#running-tests)
+- [Troubleshooting](#troubleshooting)
 
-- `FILE* open_file(const char* filename, const char* mode)`
-  - Opens a file with the specified mode and returns a FILE pointer.
-  - **Parameters:**
-    - `filename`: Path to the file
-    - `mode`: File open mode ("r", "w", "a", etc.)
-  - **Returns:** FILE pointer or NULL if file can't be opened
+## Overview
 
-- `char* read_file(const char* filename)`
-  - Reads an entire file into a dynamically allocated buffer.
-  - **Parameters:**
-    - `filename`: Path to the file
-  - **Returns:** Character buffer containing file contents or NULL on failure
-  - **Implementation details:**
-    - Uses dynamic memory allocation with initial buffer size of 1024 bytes
-    - Doubles the buffer size when needed
-    - Ensures proper NULL termination of the string
+Axon is a command-line tool that provides strong encryption and decryption capabilities using the Advanced Encryption Standard (AES-128) with Cipher Block Chaining (CBC) mode. It's designed for secure file protection with a focus on performance, security, and ease of use.
 
-- `void flush_stream(FILE *file)`
-  - Reads and displays all characters from a file stream.
-  - **Parameters:**
-    - `file`: File stream to flush
+## Features
 
-- `void copy_file(FILE* source, FILE* destination)`
-  - Copies contents from source file to destination file.
-  - **Parameters:**
-    - `source`: Source file stream
-    - `destination`: Destination file stream
+- **AES-128 Encryption**: Industry-standard symmetric encryption algorithm
+- **CBC Mode Implementation**: Enhanced security through block chaining
+- **Secure Password Handling**: Strong password validation and key derivation
+- **High Performance**: Optimized C implementation for fast encryption/decryption
+- **Command Line Interface**: Simple, scriptable interface for automation
+- **Cross-Platform Support**: Works on Linux, macOS, and Windows
+- **File Chunking**: Efficiently handles files of any size by processing in chunks
+- **Error Recovery**: Robust error handling and reporting
 
-- `void close_files(FILE *file[], int size)`
-  - Closes an array of file pointers.
-  - **Parameters:**
-    - `file`: Array of FILE pointers
-    - `size`: Size of the array
+## Architecture
 
-- `void write_file(const char* filename, const char* content, const int content_size)`
-  - Writes content to a file.
-  - **Parameters:**
-    - `filename`: Path to the file
-    - `content`: Content to write
-    - `content_size`: Size of content in bytes
-
-- `void append_file(const char* filename, const char* content, const int content_size)`
-  - Appends content to a file.
-  - **Parameters:**
-    - `filename`: Path to the file
-    - `content`: Content to append
-    - `content_size`: Size of content in bytes
-
-- `void init_state(const char* filename, char** state)`
-  - Initializes a state matrix from file contents.
-  - **Parameters:**
-    - `filename`: Path to the file
-    - `state`: 2D array to initialize
-
-- `void init_state_from_contents(const char* contents, char** state)`
-  - Initializes a state matrix from a string buffer.
-  - **Parameters:**
-    - `contents`: String buffer
-    - `state`: 2D array to initialize
-
-- `ChunkedFile file_chunker(const char* filename)`
-  - Reads a file and splits it into state matrices.
-  - **Parameters:**
-    - `filename`: Path to the file
-  - **Returns:** ChunkedFile structure containing an array of state matrices
-
-- `int chunk_writer(const char* filename, const char** chunks, size_t chunks_len)`
-  - Writes an array of chunks to a file.
-  - **Parameters:**
-    - `filename`: Path to the file
-    - `chunks`: Array of string chunks
-    - `chunks_len`: Number of chunks
-  - **Returns:** EXIT_SUCCESS or EXIT_FAILURE
-
-### 2. Decryption System (`lib/crypto/decryptor.c`)
-
-#### Functions
-
-- `char* chunk_decryptor(char* hex_bytes, char* final_pass, int block_size)`
-  - Decrypts a chunk of hex-encoded data using XOR with a password.
-  - **Parameters:**
-    - `hex_bytes`: Hex-encoded encrypted data
-    - `final_pass`: Password for decryption
-    - `block_size`: Size of the state matrix
-  - **Returns:** Decrypted data as a flat character array
-
-- `char** chain_decrytor(char** hex_file_data, char* initial_pass, int block_size, int num_states)`
-  - Decrypts a series of hex-encoded chunks, using the previous chunk as the key for the next one.
-  - **Parameters:**
-    - `hex_file_data`: Array of hex-encoded chunks
-    - `initial_pass`: Initial password
-    - `block_size`: Size of the state matrices
-    - `num_states`: Number of chunks
-  - **Returns:** Array of decrypted chunks
-
-- `char** parse_encrypted_file(const char* file_content, size_t* num_blocks_out)`
-  - Parses an encrypted file into hex-encoded blocks.
-  - **Parameters:**
-    - `file_content`: Buffer containing encrypted file data
-    - `num_blocks_out`: Output parameter for number of blocks
-  - **Returns:** Array of hex-encoded blocks
-
-### 3. Main Application (`src/main.c`)
-
-The main application provides a command-line interface for encrypting and decrypting files:
-
-#### Usage
-```
-./crypt <source_file> <destination_file> <key> <e/d>
-```
-
-- **Parameters:**
-  - `source_file`: Input file
-  - `destination_file`: Output file
-  - `key`: Password for encryption/decryption
-  - `e/d`: Operation mode (encrypt or decrypt)
-
-## Data Flow
+### Component Architecture
 
 ```mermaid
-flowchart TB
-    subgraph "Encryption Flow"
-    A[Input File] --> B[file_chunker]
-    B --> C[Splits into state matrices]
-    C --> D[chain_encryptor]
-    E[Password] --> D
-    D --> F[Encrypted chunks]
-    F --> G[chunk_writer]
-    G --> H[Output File]
+flowchart TD
+    subgraph UI["User Interface Layer"]
+        main["main.c - CLI Interface"]
     end
 
-    subgraph "Decryption Flow"
-    I[Encrypted File] --> J[read_file]
-    J --> K[parse_encrypted_file]
-    K --> L[Hex-encoded chunks]
-    L --> M[chain_decrytor]
-    N[Password] --> M
-    M --> O[Decrypted chunks]
-    O --> P[chunk_writer]
-    P --> Q[Decrypted File]
+    subgraph IO["Input/Output Layer"]
+        chunked_file["chunked_file.c - File Processing"]
     end
+
+    subgraph CE["Crypto Engine"]
+        encryptor["encryptor.c - Encryption Logic"]
+        decryptor["decryptor.c - Decryption Logic"]
+    end
+
+    subgraph AESCORE["AES Core Operations"]
+        confusion["confusion.c - SubBytes"]
+        diffusion["diffusion.c - ShiftRows, MixColumns"]
+        key["key_expansion.c - Key Scheduling"]
+    end
+
+    subgraph UTILS["Utility Functions"]
+        memory["memory.c - Memory Management"]
+        conversion["conversion.c - Data Conversion"]
+        config["config.h - Configuration"]
+        error["errors.h - Error Handling"]
+    end
+
+    UI --> CE
+    UI --> IO
+    CE --> AESCORE
+    CE --> UTILS
+    IO --> UTILS
+    AESCORE --> UTILS
 ```
 
-## Key Algorithms
+### Data Flow
 
-### State Matrix Operations
-The encryption and decryption operations work on state matrices of size STATE_SIZE x STATE_SIZE. The default size appears to be 4×4.
+```mermaid
+flowchart LR
+    subgraph input["Input Processing"]
+        in_file["Source File"] --> chunker["file_chunker()"]
+        password["Password"] --> validator["validate_password()"]
+        chunker --> states["Chunked States"]
+        validator --> key["Derived Key"]
+    end
 
-### Password-Based Encryption
-The encryption process:
-- Splits input file into blocks of size STATE_SIZE * STATE_SIZE
-- Arranges each block into a state matrix
-- XORs the state matrix with a password
-- Converts each encrypted state matrix to hex representation
-- Chains the encryption so that each encrypted block becomes the key for the next block
+    subgraph crypto["AES Processing"]
+        states --> encryptor["chain_encryptor()"]
+        key --> expander["expand_key()"]
+        expander --> round_keys["Expanded Round Keys"]
+        round_keys --> aes["AES Round Operations"]
+        encryptor --> aes
+        aes --> encrypted["Encrypted Chunks"]
+    end
 
-### Decryption Process
-The decryption process:
-- Parses the encrypted file into hex-encoded blocks
-- Converts hex blocks to binary data
-- Arranges binary data into state matrices
-- XORs each matrix with the appropriate key (password or previous block)
-- Flattens matrices and concatenates them to form the original content
+    subgraph output["Output Processing"]
+        encrypted --> writer["chunk_writer()"]
+        writer --> out_file["Destination File"]
+    end
 
-## Building and Running
-The project uses CMake as its build system:
+    classDef process fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef data fill:#bbf,stroke:#33f,stroke-width:2px;
+    classDef file fill:#bfb,stroke:#3f3,stroke-width:2px;
+    
+    class chunker,validator,encryptor,expander,aes,writer process;
+    class states,key,round_keys,encrypted data;
+    class in_file,out_file file;
+```
 
-```sh
-# Navigate to the build directory
-cd build
+### AES Round Structure
 
-# Build the project
+```mermaid
+stateDiagram-v2
+    [*] --> Initial: Input State
+    Initial --> Round1: AddRoundKey (Round 0 Key)
+    
+    state Rounds {
+        Round1 --> Round2: SubBytes → ShiftRows → MixColumns → AddRoundKey
+        Round2 --> Round3: SubBytes → ShiftRows → MixColumns → AddRoundKey
+        Round3 --> Round4: SubBytes → ShiftRows → MixColumns → AddRoundKey
+        Round4 --> Round5: SubBytes → ShiftRows → MixColumns → AddRoundKey
+        Round5 --> Round6: SubBytes → ShiftRows → MixColumns → AddRoundKey
+        Round6 --> Round7: SubBytes → ShiftRows → MixColumns → AddRoundKey
+        Round7 --> Round8: SubBytes → ShiftRows → MixColumns → AddRoundKey
+        Round8 --> Round9: SubBytes → ShiftRows → MixColumns → AddRoundKey
+        Round9 --> Final: SubBytes → ShiftRows → MixColumns → AddRoundKey
+    }
+    
+    Final --> Output: SubBytes → ShiftRows → AddRoundKey (Final)
+    Output --> [*]: Encrypted State
+```
+
+
+### Component Description
+
+1. **User Interface Layer**
+   - Handles command-line arguments
+   - Validates inputs
+   - Coordinates the encryption/decryption process
+   - Reports results and errors
+
+2. **Crypto Engine**
+   - Implements the AES algorithm
+   - Manages encryption and decryption workflows
+   - Handles the CBC mode implementation
+
+3. **AES Core Operations**
+   - **Confusion**: SubBytes operation using S-Box substitution
+   - **Diffusion**: ShiftRows and MixColumns operations
+   - **Key Expansion**: Derives round keys from the master key
+
+4. **I/O and Utilities**
+   - File chunking and processing
+   - Memory management
+   - Error handling
+   - Conversion utilities (hex/binary)
+
+## Installation
+
+### Requirements
+
+- **Build Requirements**:
+  - C Compiler (GCC 7+ or Clang 5+)
+  - CMake (3.10+)
+  - Make or Ninja build system
+  - Git (for cloning)
+
+- **Runtime Requirements**:
+  - Linux: glibc 2.17+ 
+  - macOS: 10.13+ (High Sierra or newer)
+  - Windows: Windows 7 SP1 or newer
+
+### Linux
+
+#### Using the Install Script
+
+```bash
+git clone https://github.com/RishiAhuja/axon.git
+cd axon
+chmod +x install.sh
+./install.sh
+```
+
+#### Manual Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/RishiAhuja/axon.git
+cd axon
+
+# Install using the script
+chmod +x install.sh
+./install.sh
+
+# Or build manually
+mkdir -p build && cd build
+cmake ..
 make
-
-# Run the application
-./a <source_file> <destination_file> <key> e  # For encryption
-./a <source_file> <destination_file> <key> d  # For decryption
+sudo make install
 ```
 
-## Memory Management
-The codebase carefully manages memory allocations with proper error handling:
-- Every `malloc` and `realloc` is followed by NULL checks
-- Memory is properly freed on error conditions
-- Files are closed after use
+#### Debian/Ubuntu Package
 
-## Error Handling
-The code uses predefined error messages from `failures.h` for consistent error reporting, such as:
-- `MEMORY_ALLOCATION_FAILURE`
-- `FILE_PROCESSING_FAILURE`
-- `PASSWORD_VAL_FAILURE`
-- `ENCRYPTION_FAILURE`
+```bash
+# Download the latest .deb package
+wget https://github.com/RishiAhuja/axon/releases/download/v1.0.0/axon_1.0.0_amd64.deb
 
-## Future Improvements
-- Add more robust password validation
-- Implement more sophisticated encryption algorithms beyond XOR
-- Add compression before encryption
-- Add checksum/hash verification for integrity checks
-- Consider multi-threading for processing large files
-- Improve error handling with more descriptive messages
+# Install the package
+sudo dpkg -i axon_1.0.0_amd64.deb
+sudo apt-get install -f  # Install any missing dependencies
+```
+
+### macOS
+
+#### Using Homebrew
+
+```bash
+# Add the tap repository
+brew tap RishiAhuja/axon
+
+# Install axon
+brew install axon
+```
+
+#### Manual Installation
+
+```bash
+git clone https://github.com/RishiAhuja/axon.git
+cd axon
+mkdir -p build && cd build
+cmake ..
+make
+sudo make install
+```
+
+### Windows
+
+#### Using the Installer
+
+1. Download the latest installer from the [releases page](https://github.com/username/axon/releases)
+2. Run `AxonInstaller.exe`
+3. Follow the installation wizard
+
+#### Using Chocolatey
+
+```powershell
+choco install axon
+```
+
+### From Source
+
+For all platforms, you can build and install from source:
+
+```bash
+# Clone the repository
+git clone https://github.com/RishiAhuja/axon.git
+cd axon
+
+# Create build directory
+mkdir -p build && cd build
+
+# Configure
+cmake ..
+
+# Build
+cmake --build .
+
+# Install (may require admin/sudo)
+cmake --install .
+```
+
+## Usage
+
+### Basic Commands
+
+```bash
+# Encrypt a file
+axon <source_file> <destination_file> <key> e
+
+# Decrypt a file
+axon <source_file> <destination_file> <key> d
+```
+
+### Examples
+
+```bash
+# Encrypt a text file
+axon confidential.txt confidential.enc "my-secure-password" e
+
+# Decrypt the file
+axon confidential.enc decrypted.txt "my-secure-password" d
+
+# Process a binary file
+axon image.jpg image.enc "password123" e
+```
+
+## Security Considerations
+
+- **Password Strength**: Use strong, unique passwords (12+ characters with a mix of types)
+- **File Handling**: Securely delete sensitive plaintext files after encryption
+- **Key Management**: Never store encryption keys in plaintext or share them insecurely
+- **Memory Safety**: Axon implements secure memory handling to minimize exposure of sensitive data
+
+## Development
+
+### Building from Source
+
+```bash
+git clone https://github.com/RishiAhuja/axon.git
+cd axon
+mkdir -p build && cd build
+cmake ..
+make
+sudo make install
+```
+
+### Running Tests
+
+```bash
+# In the build directory
+ctest
+```
+
+### Project Structure
+
+```
+axon/                          # Root project directory
+├── CMakeLists.txt             # Main build configuration
+├── LICENSE                    # License file
+├── README.md                  # This documentation
+├── INSTALL.md                 # Detailed installation instructions
+├── install.sh                 # Linux/macOS installation script
+├── include/                   # Header files
+│   ├── common/                # Common definitions
+│   │   ├── config.h           # Configuration constants
+│   │   └── errors.h           # Error codes and messages
+│   ├── crypto/                # Cryptography headers
+│   │   ├── aes.h              # AES algorithm interface
+│   │   ├── confusion.h        # Confusion operations (SubBytes)
+│   │   ├── diffusion.h        # Diffusion operations (ShiftRows, MixColumns)
+│   │   ├── encryptor.h        # Encryption interface
+│   │   ├── decryptor.h        # Decryption interface
+│   │   └── key_expansion.h    # Key handling
+│   └── utils/                 # Utility headers
+│       ├── conversion.h       # Format conversion utilities
+│       ├── memory.h           # Memory management utilities
+│       └── file.h             # File handling utilities
+├── lib/                       # Library source files
+│   ├── crypto/                # Cryptography implementation
+│   │   ├── aes.c              # AES algorithm implementation
+│   │   ├── confusion.c        # Confusion operations implementation
+│   │   ├── diffusion.c        # Diffusion operations implementation
+│   │   ├── encryptor.c        # Encryption implementation
+│   │   ├── decryptor.c        # Decryption implementation
+│   │   └── key_expansion.c    # Key handling implementation
+│   └── utils/                 # Utility implementations
+│       ├── conversion.c       # Format conversion utilities
+│       ├── memory.c           # Memory management utilities
+│       └── file.c             # File handling utilities
+├── src/                       # Application source
+│   └── main.c                 # Main application entry point
+├── man/                       # Manual pages
+│   └── axon.1                 # Man page for the axon command
+├── tests/                     # Test suite
+│   ├── CMakeLists.txt         # Test build configuration
+│   ├── test_aes.c             # AES algorithm tests
+│   ├── test_encryption.c      # Encryption tests
+│   └── test_decryption.c      # Decryption tests
+├── examples/                  # Example files and scripts
+│   ├── example.txt            # Sample plaintext
+│   └── example.sh             # Sample usage script
+└── packaging/                 # Packaging scripts
+    ├── windows/               # Windows packaging
+    │   └── axon.nsi           # NSIS installer script
+    ├── macos/                 # macOS packaging
+    │   └── axon.rb            # Homebrew formula
+    └── linux/                 # Linux packaging
+        └── debian/            # Debian packaging
+            └── control        # Debian package control file
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **"Command not found" error**
+   - Make sure the installation directory is in your PATH
+   - Try running with the full path to the executable
+
+2. **"Invalid password" error**
+   - Ensure the password meets the minimum requirements
+   - Check for typos or encoding issues
+
+3. **Build failures**
+   - Verify you have all required build dependencies
+   - Check the CMake output for specific errors
+
+4. **Decryption errors**
+   - Verify you're using the exact same password used for encryption
+   - Ensure the file wasn't corrupted during transfer
+
+### Getting Help
+
+For additional help:
+- Submit an issue on [GitHub](https://github.com/RishiAhuja/axon/issues)
+- Check the detailed [documentation](https://github.com/RishiAhuja/axon/wiki)
+
