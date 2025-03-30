@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../../include/common/failures.h"
 #include "../../include/crypto/decryptor.h"
+#include "../../include/crypto/decryptor.h"
 #include "../../include/utils/conversion.h"
 #include "../../include/utils/memory.h"
 #include "../../include/common/config.h"
@@ -25,11 +26,7 @@ char* chunk_decryptor(char* hex_bytes, char* final_pass, int block_size){
             state[i][j] = binary_data[i * block_size + j];
         }
     }
-    for (size_t i = 0; i < block_size; i++) {
-        for (size_t j = 0; j < block_size; j++) {
-            state[i][j] ^= final_pass[i * block_size + j];
-        }
-    }
+    single_state_decryption(state, final_pass);
     free(binary_data);
 
     char* flat_state = (char*)malloc(block_size * block_size * sizeof(char));
@@ -48,24 +45,45 @@ char* chunk_decryptor(char* hex_bytes, char* final_pass, int block_size){
 }
 
 
-char** chain_decrytor(char** hex_file_data, char* initial_pass, int block_size, int num_states){
+char** chain_decryptor(char** hex_file_data, char* initial_pass, int block_size, int num_states){
     char** decrypted_flat_content = (char**)malloc(num_states * sizeof(char*));
     if (decrypted_flat_content == NULL) {
         fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
         return NULL;
     }
-    char* current_pass = initial_pass;       
+    
+    char* current_pass = malloc(strlen(initial_pass) + 1);
+    if (current_pass == NULL) {
+        fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
+        free(decrypted_flat_content);
+        return NULL;
+    }
+    strcpy(current_pass, initial_pass);
+    
     for (size_t i = 0; i < num_states; i++){
         decrypted_flat_content[i] = chunk_decryptor(hex_file_data[i], current_pass, block_size);
+        
         if (decrypted_flat_content[i] == NULL) {
             for (size_t j = 0; j < i; j++) {
                 free(decrypted_flat_content[j]);
             }
             free(decrypted_flat_content);
+            free(current_pass);
             return NULL;
         }
+        
         if (i < num_states - 1) {
-            current_pass = hex_file_data[i];
+            free(current_pass); 
+            current_pass = malloc(strlen(hex_file_data[i]) + 1);
+            if (current_pass == NULL) {
+                fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
+                for (size_t j = 0; j <= i; j++) {
+                    free(decrypted_flat_content[j]);
+                }
+                free(decrypted_flat_content);
+                return NULL;
+            }
+            strcpy(current_pass, hex_file_data[i]);
         }
     }
     return decrypted_flat_content;
@@ -102,4 +120,26 @@ char** parse_encrypted_file(const char* file_content, size_t* num_blocks_out){
     }
     *num_blocks_out = num_blocks;
     return blocks;
+}
+
+void single_state_decryption(char** state, char* final_key) {
+    char* expanded_key = malloc(EXPANDED_KEY_SIZE);
+    if (expanded_key == NULL) {
+        fprintf(stderr, MEMORY_ALLOCATION_FAILURE);
+        return;
+    }
+    expand_key(final_key, 16, expanded_key, EXPANDED_KEY_SIZE);
+    add_round_key(state, expanded_key + (10 * STATE_SIZE * STATE_SIZE));
+    for (size_t round = 0; round < 9; round++) {
+        inv_shift_rows(state);
+        inv_sub_bytes(state);
+        add_round_key(state, expanded_key + ((9 - round) * STATE_SIZE * STATE_SIZE));
+        inv_mix_columns(state);
+    }
+    
+    inv_shift_rows(state);
+    inv_sub_bytes(state);
+    add_round_key(state, expanded_key);
+    
+    free(expanded_key);
 }

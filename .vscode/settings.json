@@ -52,7 +52,10 @@
         "key_expansion.h": "c",
         "chunked_file.h": "c",
         "memory.h": "c",
-        "transformation_config.h": "c"
+        "transformation_config.h": "c",
+        "hash_map": "c",
+        "diffusion.h": "c",
+        "decryptor.h": "c"
     },
     "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace",
     "editor.fontLigatures": true,

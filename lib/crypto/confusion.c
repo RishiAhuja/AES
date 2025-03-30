@@ -11,6 +11,15 @@ void sub_bytes(char** state){
     }
 }
 
+void inv_sub_bytes(char** state){
+    for (int i = 0; i < STATE_SIZE; i++) {
+        for (int j = 0; j < STATE_SIZE; j++) {
+            state[i][j] = inv_sbox[(unsigned char)state[i][j]];
+        }
+    }
+}
+
+
 void add_round_key(char** state, const uint8_t *round_key){
     for (int i = 0; i < STATE_SIZE; i++) {
         for (int j = 0; j < STATE_SIZE; j++) {

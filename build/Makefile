@@ -222,6 +222,30 @@ lib/crypto/decryptor.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/decryptor.c.s
 .PHONY : lib/crypto/decryptor.c.s
 
+lib/crypto/diffusion.o: lib/crypto/diffusion.c.o
+.PHONY : lib/crypto/diffusion.o
+
+# target to build an object file
+lib/crypto/diffusion.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/diffusion.c.o
+.PHONY : lib/crypto/diffusion.c.o
+
+lib/crypto/diffusion.i: lib/crypto/diffusion.c.i
+.PHONY : lib/crypto/diffusion.i
+
+# target to preprocess a source file
+lib/crypto/diffusion.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/diffusion.c.i
+.PHONY : lib/crypto/diffusion.c.i
+
+lib/crypto/diffusion.s: lib/crypto/diffusion.c.s
+.PHONY : lib/crypto/diffusion.s
+
+# target to generate assembly for a file
+lib/crypto/diffusion.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/diffusion.c.s
+.PHONY : lib/crypto/diffusion.c.s
+
 lib/crypto/encryptor.o: lib/crypto/encryptor.c.o
 .PHONY : lib/crypto/encryptor.o
 
@@ -409,6 +433,9 @@ help:
 	@echo "... lib/crypto/decryptor.o"
 	@echo "... lib/crypto/decryptor.i"
 	@echo "... lib/crypto/decryptor.s"
+	@echo "... lib/crypto/diffusion.o"
+	@echo "... lib/crypto/diffusion.i"
+	@echo "... lib/crypto/diffusion.s"
 	@echo "... lib/crypto/encryptor.o"
 	@echo "... lib/crypto/encryptor.i"
 	@echo "... lib/crypto/encryptor.s"

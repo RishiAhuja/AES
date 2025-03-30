@@ -17,6 +17,7 @@ add_executable(crypt
     lib/crypto/key_expansion.c
     lib/utils/conversion.c
     lib/crypto/confusion.c
+    lib/crypto/diffusion.c
 )
 
 install(TARGETS crypt DESTINATION bin)
