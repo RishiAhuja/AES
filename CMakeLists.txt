@@ -14,7 +14,9 @@ add_executable(crypt
     lib/crypto/password.c
     lib/crypto/encryptor.c
     lib/crypto/decryptor.c
+    lib/crypto/key_expansion.c
     lib/utils/conversion.c
+    lib/crypto/confusion.c
 )
 
 install(TARGETS crypt DESTINATION bin)

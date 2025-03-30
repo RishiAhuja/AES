@@ -48,7 +48,11 @@
         "failures.h": "c",
         "conversion.h": "c",
         "encyrptor.h": "c",
-        "encryptor.h": "c"
+        "encryptor.h": "c",
+        "key_expansion.h": "c",
+        "chunked_file.h": "c",
+        "memory.h": "c",
+        "transformation_config.h": "c"
     },
     "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace",
     "editor.fontLigatures": true,

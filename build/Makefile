@@ -174,6 +174,30 @@ crypt/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/build
 .PHONY : crypt/fast
 
+lib/crypto/confusion.o: lib/crypto/confusion.c.o
+.PHONY : lib/crypto/confusion.o
+
+# target to build an object file
+lib/crypto/confusion.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/confusion.c.o
+.PHONY : lib/crypto/confusion.c.o
+
+lib/crypto/confusion.i: lib/crypto/confusion.c.i
+.PHONY : lib/crypto/confusion.i
+
+# target to preprocess a source file
+lib/crypto/confusion.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/confusion.c.i
+.PHONY : lib/crypto/confusion.c.i
+
+lib/crypto/confusion.s: lib/crypto/confusion.c.s
+.PHONY : lib/crypto/confusion.s
+
+# target to generate assembly for a file
+lib/crypto/confusion.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/confusion.c.s
+.PHONY : lib/crypto/confusion.c.s
+
 lib/crypto/decryptor.o: lib/crypto/decryptor.c.o
 .PHONY : lib/crypto/decryptor.o
 
@@ -221,6 +245,30 @@ lib/crypto/encryptor.s: lib/crypto/encryptor.c.s
 lib/crypto/encryptor.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/encryptor.c.s
 .PHONY : lib/crypto/encryptor.c.s
+
+lib/crypto/key_expansion.o: lib/crypto/key_expansion.c.o
+.PHONY : lib/crypto/key_expansion.o
+
+# target to build an object file
+lib/crypto/key_expansion.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.o
+.PHONY : lib/crypto/key_expansion.c.o
+
+lib/crypto/key_expansion.i: lib/crypto/key_expansion.c.i
+.PHONY : lib/crypto/key_expansion.i
+
+# target to preprocess a source file
+lib/crypto/key_expansion.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.i
+.PHONY : lib/crypto/key_expansion.c.i
+
+lib/crypto/key_expansion.s: lib/crypto/key_expansion.c.s
+.PHONY : lib/crypto/key_expansion.s
+
+# target to generate assembly for a file
+lib/crypto/key_expansion.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/crypt.dir/build.make CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.s
+.PHONY : lib/crypto/key_expansion.c.s
 
 lib/crypto/password.o: lib/crypto/password.c.o
 .PHONY : lib/crypto/password.o
@@ -355,12 +403,18 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... crypt"
+	@echo "... lib/crypto/confusion.o"
+	@echo "... lib/crypto/confusion.i"
+	@echo "... lib/crypto/confusion.s"
 	@echo "... lib/crypto/decryptor.o"
 	@echo "... lib/crypto/decryptor.i"
 	@echo "... lib/crypto/decryptor.s"
 	@echo "... lib/crypto/encryptor.o"
 	@echo "... lib/crypto/encryptor.i"
 	@echo "... lib/crypto/encryptor.s"
+	@echo "... lib/crypto/key_expansion.o"
+	@echo "... lib/crypto/key_expansion.i"
+	@echo "... lib/crypto/key_expansion.s"
 	@echo "... lib/crypto/password.o"
 	@echo "... lib/crypto/password.i"
 	@echo "... lib/crypto/password.s"

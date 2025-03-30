@@ -153,10 +153,24 @@ CMakeFiles/crypt.dir/lib/crypto/decryptor.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/crypt.dir/lib/crypto/decryptor.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rishi/CPrograms/lib/crypto/decryptor.c -o CMakeFiles/crypt.dir/lib/crypto/decryptor.c.s
 
+CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.o: CMakeFiles/crypt.dir/flags.make
+CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.o: ../lib/crypto/key_expansion.c
+CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.o: CMakeFiles/crypt.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rishi/CPrograms/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.o -MF CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.o.d -o CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.o -c /home/rishi/CPrograms/lib/crypto/key_expansion.c
+
+CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rishi/CPrograms/lib/crypto/key_expansion.c > CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.i
+
+CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rishi/CPrograms/lib/crypto/key_expansion.c -o CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.s
+
 CMakeFiles/crypt.dir/lib/utils/conversion.c.o: CMakeFiles/crypt.dir/flags.make
 CMakeFiles/crypt.dir/lib/utils/conversion.c.o: ../lib/utils/conversion.c
 CMakeFiles/crypt.dir/lib/utils/conversion.c.o: CMakeFiles/crypt.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rishi/CPrograms/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/crypt.dir/lib/utils/conversion.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rishi/CPrograms/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/crypt.dir/lib/utils/conversion.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/crypt.dir/lib/utils/conversion.c.o -MF CMakeFiles/crypt.dir/lib/utils/conversion.c.o.d -o CMakeFiles/crypt.dir/lib/utils/conversion.c.o -c /home/rishi/CPrograms/lib/utils/conversion.c
 
 CMakeFiles/crypt.dir/lib/utils/conversion.c.i: cmake_force
@@ -167,6 +181,20 @@ CMakeFiles/crypt.dir/lib/utils/conversion.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/crypt.dir/lib/utils/conversion.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rishi/CPrograms/lib/utils/conversion.c -o CMakeFiles/crypt.dir/lib/utils/conversion.c.s
 
+CMakeFiles/crypt.dir/lib/crypto/confusion.c.o: CMakeFiles/crypt.dir/flags.make
+CMakeFiles/crypt.dir/lib/crypto/confusion.c.o: ../lib/crypto/confusion.c
+CMakeFiles/crypt.dir/lib/crypto/confusion.c.o: CMakeFiles/crypt.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rishi/CPrograms/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/crypt.dir/lib/crypto/confusion.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/crypt.dir/lib/crypto/confusion.c.o -MF CMakeFiles/crypt.dir/lib/crypto/confusion.c.o.d -o CMakeFiles/crypt.dir/lib/crypto/confusion.c.o -c /home/rishi/CPrograms/lib/crypto/confusion.c
+
+CMakeFiles/crypt.dir/lib/crypto/confusion.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/crypt.dir/lib/crypto/confusion.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rishi/CPrograms/lib/crypto/confusion.c > CMakeFiles/crypt.dir/lib/crypto/confusion.c.i
+
+CMakeFiles/crypt.dir/lib/crypto/confusion.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/crypt.dir/lib/crypto/confusion.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rishi/CPrograms/lib/crypto/confusion.c -o CMakeFiles/crypt.dir/lib/crypto/confusion.c.s
+
 # Object files for target crypt
 crypt_OBJECTS = \
 "CMakeFiles/crypt.dir/src/main.c.o" \
@@ -175,7 +203,9 @@ crypt_OBJECTS = \
 "CMakeFiles/crypt.dir/lib/crypto/password.c.o" \
 "CMakeFiles/crypt.dir/lib/crypto/encryptor.c.o" \
 "CMakeFiles/crypt.dir/lib/crypto/decryptor.c.o" \
-"CMakeFiles/crypt.dir/lib/utils/conversion.c.o"
+"CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.o" \
+"CMakeFiles/crypt.dir/lib/utils/conversion.c.o" \
+"CMakeFiles/crypt.dir/lib/crypto/confusion.c.o"
 
 # External object files for target crypt
 crypt_EXTERNAL_OBJECTS =
@@ -186,10 +216,12 @@ crypt: CMakeFiles/crypt.dir/lib/utils/memory.c.o
 crypt: CMakeFiles/crypt.dir/lib/crypto/password.c.o
 crypt: CMakeFiles/crypt.dir/lib/crypto/encryptor.c.o
 crypt: CMakeFiles/crypt.dir/lib/crypto/decryptor.c.o
+crypt: CMakeFiles/crypt.dir/lib/crypto/key_expansion.c.o
 crypt: CMakeFiles/crypt.dir/lib/utils/conversion.c.o
+crypt: CMakeFiles/crypt.dir/lib/crypto/confusion.c.o
 crypt: CMakeFiles/crypt.dir/build.make
 crypt: CMakeFiles/crypt.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rishi/CPrograms/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable crypt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rishi/CPrograms/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking C executable crypt"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/crypt.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
