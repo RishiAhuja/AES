@@ -11,7 +11,7 @@ void copy_file(FILE* source, FILE* destination);
 void close_files(FILE *file[], int size);
 void init_state(const char* filename, char** state);
 void write_file(const char* filename, const char* content, const int content_size);
-int chunk_writer(const char* filename, const char** chunks, size_t chunks_len);
+int chunk_writer(const char* filename, char** chunks, size_t chunks_len);
 void init_state_from_contents(const char* contents, char** state);
 ChunkedFile file_chunker(const char* filename);
 

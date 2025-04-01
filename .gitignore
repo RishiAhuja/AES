@@ -71,4 +71,4 @@ Thumbs.db
 !.env.example
 node_modules/
 *.bak
-*.patch
+*.patchbuild/

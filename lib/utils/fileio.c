@@ -196,7 +196,7 @@ ChunkedFile file_chunker(const char* filename){
 }
 
 
-int chunk_writer(const char* filename, const char** chunks, size_t chunks_len){
+int chunk_writer(const char* filename, char** chunks, size_t chunks_len){
     if (!filename || !chunks) {
         fprintf(stderr, INVALID_CHUNK_WRITER_ARGS);
         return EXIT_FAILURE;

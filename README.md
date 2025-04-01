@@ -196,40 +196,123 @@ sudo apt-get install -f  # Install any missing dependencies
 
 ### macOS
 
-#### Using Homebrew
+#### Using the Install Script
 
 ```bash
-# Add the tap repository
-brew tap RishiAhuja/axon
-
-# Install axon
-brew install axon
+git clone https://github.com/RishiAhuja/axon.git
+cd axon
+chmod +x install.sh
+./install.sh
 ```
 
 #### Manual Installation
 
 ```bash
+# Clone the repository
 git clone https://github.com/RishiAhuja/axon.git
 cd axon
+
+# Install using the script
+chmod +x install.sh
+./install.sh
+
+# Or build manually
 mkdir -p build && cd build
 cmake ..
 make
 sudo make install
 ```
 
-### Windows
+Here's a detailed explanation for your README file, including the need to run Git Bash as an administrator:
 
-#### Using the Installer
+---
 
-1. Download the latest installer from the [releases page](https://github.com/RishAhuja/axon/releases)
-2. Run `AxonInstaller.exe`
-3. Follow the installation wizard
+## Windows Installation Guide
 
-#### Using Chocolatey
+Follow these steps to install Axon on Windows. Since Windows doesn't natively support bash scripts, you'll need to set up a bash environment and ensure proper permissions.
 
-```powershell
-choco install axon
+### Prerequisites: Install Git Bash
+1. **Download Git Bash**:
+   - Visit [git-scm.com](https://git-scm.com) and download the latest version of Git for Windows.
+   - Run the installer and follow the setup process. Use the default settings unless you need specific customizations.
+
+2. **Verify Installation**:
+   - Open Git Bash by searching for "Git Bash" in the Start Menu.
+   - Run the following command to check if Git is installed:
+     ```bash
+     git --version
+     ```
+   - You should see the installed version of Git displayed.
+
+---
+
+### Step-by-Step Installation
+
+#### 1. Open Git Bash as Administrator
+To ensure the installation script runs smoothly, you need to open Git Bash with administrative privileges:
+- **Option 1**: Manually run as Administrator:
+  - Right-click on "Git Bash" in the Start Menu.
+  - Select **Run as administrator**.
+- **Option 2**: Always run Git Bash as Administrator:
+  - Search for "Git Bash" in the Start Menu.
+  - Right-click and select **Open file location**.
+  - Right-click on the shortcut → **Properties** → **Compatibility** tab → Check **Run this program as administrator** → Click OK.
+
+#### 2. Clone the Repository
+Run the following commands in Git Bash:
+```bash
+git clone https://github.com/RishiAhuja/axon.git
+cd axon
 ```
+
+#### 3. Run the Installation Script
+Execute the installation script to build and install Axon:
+```bash
+chmod +x install.sh    # Makes script executable (optional in Git Bash)
+./install.sh           # Runs the installation script
+```
+
+#### 4. Add Axon to PATH Environment Variable
+After installation, you need to add Axon's executable directory (`C:\Program Files (x86)\axon\bin`) to your system's PATH variable so you can use `axon` from any terminal.
+
+1. **Find the Installation Directory**:
+   By default, Axon installs to `C:\Program Files (x86)\axon\bin`.
+
+2. **Edit PATH Variable**:
+   - Press `Win + S` → Search for "Environment Variables".
+   - Click "Edit the system environment variables".
+   - In the "System Properties" window, click **Environment Variables**.
+   - Under "System variables", find "Path" → Click **Edit**.
+   - Add a new entry: `C:\Program Files (x86)\axon\bin`.
+   - Click OK to save changes.
+
+3. **Restart Terminal**:
+   Close and reopen your terminal for changes to take effect.
+
+---
+
+### Verify Installation
+To ensure Axon is installed correctly:
+```bash
+axon
+```
+You should see a help menu displaying usage instructions for Axon.
+
+---
+
+### Troubleshooting
+
+1. **Command Not Found**:
+   If `axon` isn't recognized:
+   - Double-check that you added the correct path (`C:\Program Files (x86)\axon\bin`) to your PATH variable.
+   - Restart your terminal after making changes.
+
+2. **Permission Errors**:
+   Ensure you're running Git Bash as Administrator when executing scripts or installing Axon.
+
+3. **Dependencies Missing**:
+   Ensure tools like `cmake` and a C compiler (e.g., MinGW) are installed on your system.
+
 
 ### From Source
 

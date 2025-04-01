@@ -74,7 +74,7 @@ int main(int argc, const char* argv[]) {
             free(chunked_file.state);
             return EXIT_FAILURE;
         }
-        const char** encrypted_content = chain_encryptor(chunked_file.state, final_pass, STATE_SIZE, chunked_file.num_state);
+        char** encrypted_content = chain_encryptor(chunked_file.state, final_pass, STATE_SIZE, chunked_file.num_state);
         if (!encrypted_content) {
             fprintf(stderr, ENCRYPTION_FAILURE);
             for (size_t i = 0; i < chunked_file.num_state; i++) {
@@ -140,7 +140,7 @@ int main(int argc, const char* argv[]) {
             return EXIT_FAILURE;
         }
         
-        int write_result = chunk_writer(argv[2], (const char**)decrypted_content, num_chunks);
+        int write_result = chunk_writer(argv[2], (char**)decrypted_content, num_chunks);
         if (write_result == -1) {
             fprintf(stderr, FILE_WRITE_FAILURE);
             status = EXIT_FAILURE;

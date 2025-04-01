@@ -1,8 +1,0 @@
-/home/rishi/axon/build/CMakeFiles/axon_lib.dir
-/home/rishi/axon/build/CMakeFiles/axon.dir
-/home/rishi/axon/build/CMakeFiles/edit_cache.dir
-/home/rishi/axon/build/CMakeFiles/rebuild_cache.dir
-/home/rishi/axon/build/CMakeFiles/list_install_components.dir
-/home/rishi/axon/build/CMakeFiles/install.dir
-/home/rishi/axon/build/CMakeFiles/install/local.dir
-/home/rishi/axon/build/CMakeFiles/install/strip.dir
