@@ -225,9 +225,8 @@ sudo make install
 
 Here's a detailed explanation for your README file, including the need to run Git Bash as an administrator:
 
----
 
-## Windows Installation Guide
+## Windows
 
 Follow these steps to install Axon on Windows. Since Windows doesn't natively support bash scripts, you'll need to set up a bash environment and ensure proper permissions.
 
@@ -243,8 +242,6 @@ Follow these steps to install Axon on Windows. Since Windows doesn't natively su
      git --version
      ```
    - You should see the installed version of Git displayed.
-
----
 
 ### Step-by-Step Installation
 
@@ -289,16 +286,14 @@ After installation, you need to add Axon's executable directory (`C:\Program Fil
 3. **Restart Terminal**:
    Close and reopen your terminal for changes to take effect.
 
----
 
 ### Verify Installation
 To ensure Axon is installed correctly:
 ```bash
 axon
 ```
-You should see a help menu displaying usage instructions for Axon.
+You should see a help menu displaying Axon usage instructions.
 
----
 
 ### Troubleshooting
 
