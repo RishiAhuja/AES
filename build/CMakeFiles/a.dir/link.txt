@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/a.dir/src/main.c.o CMakeFiles/a.dir/lib/utils/fileio.c.o CMakeFiles/a.dir/lib/utils/memory.c.o CMakeFiles/a.dir/lib/crypto/password.c.o CMakeFiles/a.dir/lib/crypto/encryptor.c.o CMakeFiles/a.dir/lib/crypto/decryptor.c.o CMakeFiles/a.dir/lib/utils/conversion.c.o -o a 
