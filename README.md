@@ -2,9 +2,8 @@
 
 A high-performance, secure file encryption and decryption tool using AES-128.
 
-![Axon Logo](assets/logo.jpg)
+  <img src="assets/logo.jpg" alt="Axon Logo" width="150">
 
-## Table of Contents
 
 ## Table of Contents
 
@@ -115,29 +114,6 @@ flowchart LR
     class in_file,out_file file;
 ```
 
-### AES Round Structure
-
-```mermaid
-stateDiagram-v2
-    [*] --> Initial: Input State
-    Initial --> Round1: AddRoundKey (Round 0 Key)
-    
-    state Rounds {
-        Round1 --> Round2: SubBytes → ShiftRows → MixColumns → AddRoundKey
-        Round2 --> Round3: SubBytes → ShiftRows → MixColumns → AddRoundKey
-        Round3 --> Round4: SubBytes → ShiftRows → MixColumns → AddRoundKey
-        Round4 --> Round5: SubBytes → ShiftRows → MixColumns → AddRoundKey
-        Round5 --> Round6: SubBytes → ShiftRows → MixColumns → AddRoundKey
-        Round6 --> Round7: SubBytes → ShiftRows → MixColumns → AddRoundKey
-        Round7 --> Round8: SubBytes → ShiftRows → MixColumns → AddRoundKey
-        Round8 --> Round9: SubBytes → ShiftRows → MixColumns → AddRoundKey
-        Round9 --> Final: SubBytes → ShiftRows → MixColumns → AddRoundKey
-    }
-    
-    Final --> Output: SubBytes → ShiftRows → AddRoundKey (Final)
-    Output --> [*]: Encrypted State
-```
-
 
 ### Component Description
 
@@ -211,7 +187,7 @@ sudo make install
 
 ```bash
 # Download the latest .deb package
-wget https://github.com/RishiAhuja/axon/releases/download/v1.0.0/axon_1.0.0_amd64.deb
+wget https://github.com/RishiAhuja/axon/releases/download/1.0.0/axon_1.0.0_amd64.deb
 
 # Install the package
 sudo dpkg -i axon_1.0.0_amd64.deb
@@ -245,7 +221,7 @@ sudo make install
 
 #### Using the Installer
 
-1. Download the latest installer from the [releases page](https://github.com/username/axon/releases)
+1. Download the latest installer from the [releases page](https://github.com/RishAhuja/axon/releases)
 2. Run `AxonInstaller.exe`
 3. Follow the installation wizard
 
@@ -297,9 +273,6 @@ axon confidential.txt confidential.enc "my-secure-password" e
 
 # Decrypt the file
 axon confidential.enc decrypted.txt "my-secure-password" d
-
-# Process a binary file
-axon image.jpg image.enc "password123" e
 ```
 
 ## Security Considerations
@@ -320,13 +293,6 @@ mkdir -p build && cd build
 cmake ..
 make
 sudo make install
-```
-
-### Running Tests
-
-```bash
-# In the build directory
-ctest
 ```
 
 ### Project Structure
@@ -411,5 +377,4 @@ axon/                          # Root project directory
 
 For additional help:
 - Submit an issue on [GitHub](https://github.com/RishiAhuja/axon/issues)
-- Check the detailed [documentation](https://github.com/RishiAhuja/axon/wiki)
 
