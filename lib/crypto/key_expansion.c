@@ -7,7 +7,8 @@
 #include <stdint.h>
 #include "../../include/common/transformation_config.h"
 
-void expand_key(char* key, int key_size, char* expanded_key, int expanded_key_size){
+void expand_key(const char* key, size_t key_size, char* expanded_key, size_t expanded_key_size)
+{
     if (key_size != STATE_SIZE * STATE_SIZE) {
         fprintf(stderr, "Invalid key size\n");
         return;

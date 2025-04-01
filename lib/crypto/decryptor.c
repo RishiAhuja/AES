@@ -3,14 +3,13 @@
 #include <string.h>
 #include "../../include/common/failures.h"
 #include "../../include/crypto/decryptor.h"
-#include "../../include/crypto/decryptor.h"
 #include "../../include/utils/conversion.h"
 #include "../../include/utils/memory.h"
 #include "../../include/common/config.h"
 
 char* chunk_decryptor(char* hex_bytes, char* final_pass, int block_size){
     size_t binary_len;
-    unsigned char* binary_data = hex_to_bytes(hex_bytes, &binary_len);
+     char* binary_data = hex_to_bytes(hex_bytes, &binary_len);
     if (binary_data == NULL) {
         fprintf(stderr, "Error converting hex to bytes\n");
         return NULL;
